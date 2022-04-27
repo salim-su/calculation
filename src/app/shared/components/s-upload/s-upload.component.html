@@ -1,0 +1,55 @@
+<ng-container>
+  <nz-upload
+    *ngIf="!disableFlag"
+    [nzAccept]="nzAcceptType"
+    [nzMultiple]="nzMultipleFlag"
+    [nzShowUploadList]="false"
+    nzAction="blade-resource/oss/endpoint/put-file-attach?code=tiog"
+    (nzChange)="change($event)"
+  >
+    <button nz-button nzType="primary" [disabled]="disableFlag"><i nz-icon nzType="upload"></i>上传</button>
+    <!--    <button nz-button nzType="primary">Primary Button</button>-->
+    <!--            <div class="normalbtn"><i nz-icon nzType="upload"></i>上传图片</div>-->
+  </nz-upload>
+
+  <nz-list>
+    <nz-list-item
+      [ngClass]="fllFlag ? 'fll' : ''"
+      *ngFor="let item of fileList; let index = index"
+      [nzActions]="isEdit ? [downloadAction, delAction] : [downloadAction]"
+    >
+      <img
+        *ngIf="showPicPreview"
+        [nzFallback]="fallback"
+        nz-image
+        width="100px"
+        height="100px"
+        [nzSrc]="picTypes.indexOf(item.link.substring(item.link.length - 4, item.link.length)) == -1 ? '/assets/img/file.png' : item.link"
+        alt=""
+      />
+      <ng-template #showAction><a (click)="show(item)">预览</a></ng-template>
+      <ng-template #downloadAction><a (click)="download(item)">下载</a></ng-template>
+      <ng-template #delAction>
+        <a *ngIf="isDel" nz-popconfirm nzPopconfirmTitle="是否删除" (nzOnConfirm)="del(index)">删除</a>
+      </ng-template>
+      <div *ngIf="attachmentTitleFlag" class="fileName flex align-items-baseline" title="{{ item.originalName }}">
+        <div class="w ct">
+          <span class="icon fll">
+            <i nz-icon [nzIconfont]="'icon-word'" *ngIf="item?.extension == 'docx'"></i>
+            <i nz-icon [nzIconfont]="'icon-text'" *ngIf="item?.extension == 'txt'"></i>
+            <i nz-icon [nzIconfont]="'icon-pdf'" *ngIf="item?.extension == 'pdf'"></i>
+            <i nz-icon [nzIconfont]="'icon-excel'" *ngIf="item?.extension == 'xlsx'"></i>
+            <i nz-icon [nzIconfont]="'icon-excel'" *ngIf="item?.extension == 'xls'"></i>
+            <i nz-icon [nzIconfont]="'icon-image'" *ngIf="item?.extension == 'gif'"></i>
+            <i nz-icon [nzIconfont]="'icon-zip'" *ngIf="item?.extension == 'zip'"></i>
+            <i nz-icon [nzIconfont]="'icon-ppt'" *ngIf="item?.extension == 'ppt'"></i>
+            <i nz-icon [nzIconfont]="'icon-image'" *ngIf="item?.extension == 'png'"></i>
+            <i nz-icon [nzIconfont]="'icon-image'" *ngIf="item?.extension == 'jpg'"></i>
+            <i nz-icon [nzIconfont]="'icon-image'" *ngIf="item?.extension == 'jpeg'"></i>
+          </span>
+          <span>{{ item.originalName }}</span>
+        </div>
+      </div>
+    </nz-list-item>
+  </nz-list>
+</ng-container>

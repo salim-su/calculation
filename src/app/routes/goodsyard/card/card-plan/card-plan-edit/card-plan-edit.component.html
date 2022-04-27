@@ -1,0 +1,60 @@
+<div class="flex h">
+  <div class="" style="width: 300px">
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">计划编号</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="planNo" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">船名</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="shipName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">下货纸</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="commodityPaper" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">场地</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select formControlName="fieldId" nzAllowClear (ngModelChange)="chooseFiledChange($event)">
+            <nz-option *ngFor="let item of fieldList" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>垛位</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select formControlName="stackId" nzAllowClear (ngModelChange)="chooseStack($event)">
+            <nz-option *ngFor="let item of stackList" [nzValue]="item.id" [nzLabel]="item.shipName + '-' + item.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">备注</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="remark" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!--      <nz-form-item>-->
+      <!--        <nz-form-control [nzOffset]="7" [nzSpan]="12">-->
+      <!--          <button nz-button nzType="primary" (click)="save()">确定</button>-->
+      <!--          <button nz-button (click)="close()">取消</button>-->
+      <!--        </nz-form-control>-->
+      <!--      </nz-form-item>-->
+    </form>
+  </div>
+  <div class="flex1" appMapPanel [record]="stackList" (clickMap)="onClickMap($event)"></div>
+</div>
+<div class="drawer-footer-bottom">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save()">保存</button>
+</div>

@@ -1,0 +1,49 @@
+<!--<form nz-form [formGroup]='form' class='flex w'>-->
+<!--  <nz-form-item>-->
+<!--    <nz-form-label [nzSpan]='7'>垛位</nz-form-label>-->
+<!--    <nz-form-control [nzSpan]='12'>-->
+<!--      <nz-select formControlName='fieldId' nzAllowClear>-->
+<!--        <nz-option *ngFor='let item of stackList' [nzValue]='item.id' [nzLabel]='item.name'></nz-option>-->
+<!--      </nz-select>-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
+<!--</form>-->
+
+<form nz-form [formGroup]="form">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>类型</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-select formControlName="type" nzAllowClear>
+        <nz-option *ngFor="let item of typeList" [nzValue]="item.key" [nzLabel]="item.value"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>垛位</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-select formControlName="stackId" nzAllowClear [nzShowSearch]="true">
+        <nz-option *ngFor="let item of stackList" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>时间</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" class="w" formControlName="time" [nzAllowClear]="false"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>吨数</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-input-number formControlName="tonnage" [nzMin]="0" [nzStep]="1"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div class="drawer-footer-bottom">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save()">保存</button>
+</div>

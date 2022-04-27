@@ -1,0 +1,16 @@
+
+
+
+
+<div class='content' style='padding-top: 20px;padding-left: 20px;'>
+  <nz-card nzTitle="安全告知">
+    <textarea rows="4" nz-input [(ngModel)]="inputValue"></textarea>
+
+    <div>
+      <button class='mt25' nz-button nzType="primary" (click)="save()">保存</button>
+    </div>
+  </nz-card>
+  <ng-template #extraTemplate>
+    <a>More</a>
+  </ng-template>
+</div>

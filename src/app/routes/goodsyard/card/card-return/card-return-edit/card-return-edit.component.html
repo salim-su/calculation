@@ -1,0 +1,22 @@
+<div class="flex mt25 mb50">
+  <div class="flex1 tr fs16">
+    <div class="mb15">车牌号 ：</div>
+    <div class="mb15">卡号 ：</div>
+    <div class="mb15">场区 ：</div>
+    <div class="mb15">计划号 ：</div>
+    <div class="mb15">船名 ：</div>
+    <div class="mb15">货名 ：</div>
+  </div>
+  <div class="flex1 tl fs16">
+    <div class="mb15">{{ record?.licenseNumber }}</div>
+    <div class="mb15">{{ record?.cardNo }}</div>
+    <div class="mb15">{{ record?.fieldName }}</div>
+    <div class="mb15">{{ record?.planNo }}</div>
+    <div class="mb15">{{ record?.shipName }}</div>
+    <div class="mb15">{{ record?.cargoName }}</div>
+  </div>
+</div>
+
+<div class="flex justify-content-center">
+  <button style="width: 150px" nz-button nzType="primary" (click)="unbind()">立即解绑</button>
+</div>

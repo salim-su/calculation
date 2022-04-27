@@ -1,0 +1,174 @@
+@import '~@delon/theme/index';
+//@import '~@delon/theme/styles/default';
+
+:host {
+  display: block;
+  //width: 368px;
+  //width: 1200px;
+  //height: 600px;
+  //margin: 0 auto;
+  //margin-left: 50%;
+  //  background-color: #cccccc;
+  //margin-bottom: 5vh;
+  width: 100vw;
+  height: 100vh;
+
+  .login-right {
+    background-image: url('../../../../assets/img/login-right-bg.png');
+    //background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1190px;height: 100vh;
+  }
+
+  ::ng-deep {
+    .ant-input-affix-wrapper-lg {
+      //padding: 0 !important;
+    }
+
+    .ant-input-suffix {
+      margin-left: 0 !important;
+    }
+
+    .loginInForm {
+      .loginForm {
+        //background-image: url('../../../../assets/img/loginInForm.png');
+        //background-size: contain;
+        padding: 70px 120px 130px 120px;
+      }
+
+      width: 100%;
+      height: 100vh;
+      background-color: unset !important;
+      //background-image: url("../../../../assets/img/loginInForm.png");
+      //padding: 220px 80px 60px 100px;
+      //background-size: cover;
+      //input:-webkit-autofill,
+      //textarea:-webkit-autofill,
+      //select:-webkit-autofill {
+      //  -webkit-text-fill-color: #fff !important;
+      //  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      //  background-color: transparent !important;
+      //  background-image: none !important;
+      //  transition: background-color 50000s ease-in-out 0s !important; //背景色透明  生效时长  过渡效果  启用时延迟的时间
+      //}
+      //
+      //input {
+      //  background-color: rgba(255, 255, 255, 0.4) !important;
+      //  color: #ffffff !important;
+      //  font-size: 20px !important;
+      //}
+      //
+      //input::-webkit-input-placeholder { /* WebKit browsers */
+      //  color: #fff;
+      //}
+      input:-webkit-autofill {
+        //-webkit-box-shadow: 0 0 0px 1000px #f4dedc inset !important;
+        outline: none;
+      }
+
+      .anticon {
+        color: #a58b89 !important;
+        font-size: 18px !important;
+      }
+
+      .has-error .ant-input,
+      .has-error .ant-input:hover {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+      }
+
+      .ant-input {
+        transition: all 0s;
+        //border-color: transparent !important;
+      }
+
+      .ant-input:focus {
+        box-shadow: 0 0 0 2px transparent;
+      }
+    }
+
+    .ant-form-item {
+      margin-bottom: 20px !important;
+    }
+
+    .ant-tabs .ant-tabs-bar {
+      margin-bottom: 24px;
+      text-align: center;
+      border-bottom: 0;
+    }
+
+    .ant-tabs-tab {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .ant-input-affix-wrapper .ant-input:not(:first-child) {
+      padding-left: 14px;
+    }
+
+    .icon {
+      margin-left: 16px;
+      color: rgba(0, 0, 0, 0.2);
+      font-size: 24px;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
+
+    .other {
+      margin-top: 24px;
+      line-height: 22px;
+      text-align: left;
+
+      nz-tooltip {
+        vertical-align: middle;
+      }
+
+      .register {
+        float: right;
+      }
+    }
+
+    //@media screen and (max-width: 1920px) and (min-width: 1367px) {
+    //
+    //  .loginInForm {
+    //    //margin-left: 60%;
+    //    //margin-top: 30%;
+    //  }
+    //}
+    //@media screen and (max-width: 1919px) {
+    //  .loginInForm {
+    //    //margin-left: 40%;
+    //    //margin-top: 8%;
+    //  }
+    //}
+
+    .ant-input-affix-wrapper {
+      font-size: 18px !important;
+      //background-color: #f4dedc !important;
+    }
+
+    .ant-form-item-label > label {
+      font-size: 16px;
+    }
+
+    .ant-input {
+      //background-color: #f4dedc !important;
+      border: unset !important;
+      border-bottom: 1px solid #d9d9d9 !important;
+      padding-left: 0 !important;
+    }
+
+    .ant-form-item-has-error .ant-input,
+    .ant-form-item-has-error .ant-input-affix-wrapper,
+    .ant-form-item-has-error .ant-input:hover,
+    .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+      //background-color: #f4dedc !important;
+    }
+  }
+}

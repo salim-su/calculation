@@ -1,0 +1,21 @@
+<nz-table #basicTable [nzData]="listOfData" [nzFrontPagination]='false'>
+  <thead>
+  <tr>
+    <th>截止日期(天)</th>
+    <th>计费单价(元/吨、天)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.days }}</td>
+    <td>{{ data.bill }}</td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+
+<div class="drawer-footer-bottom">
+  <button class='cancel-btn'  nz-button (click)='close()'>关闭</button>
+<!--  <button class='save-btn' nz-button nzType='primary' (click)='saveAndClose()'>保存</button>-->
+</div>

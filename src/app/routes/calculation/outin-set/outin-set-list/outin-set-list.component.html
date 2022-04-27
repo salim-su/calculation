@@ -1,0 +1,42 @@
+<div class='content' style='padding-top: 20px; padding-left: 20px'>
+  <nz-card style='min-height: calc(100vh - 20px); border-top-left-radius: 10px' [nzBordered]='false'>
+    <nz-table
+      class='mt30 hover-table odd-table fix-table'
+      #table
+      [nzShowSizeChanger]='true'
+      [nzFrontPagination]='false'
+      [nzShowTotal]='totalTemplate'
+      [nzData]='dataList'
+      [nzLoading]='pageInfo.loading'
+      (nzPageIndexChange)='load()'
+    >
+      <thead>
+      <tr>
+        <th class='w80'>序号</th>
+        <th>名称</th>
+        <th>入库</th>
+        <th>出库</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let data of table.data; let i = index'>
+        <td>{{ i + 1 + (this.pageInfo.pi - 1) * this.pageInfo.ps }}</td>
+        <td>{{ data?.name }}</td>
+        <td>
+<!--          <label nz-radio [ngModel]='data?.type === "0"' (ngModelChange)='clickIn($event,data)'></label>-->
+          <nz-switch [ngModel]="data?.type === 'IN'" (ngModelChange)='clickIn($event,data)'></nz-switch>
+        </td>
+        <td>
+<!--          <label nz-radio [ngModel]='data?.type === ""' (ngModelChange)='clickOut($event,data)'></label>-->
+
+          <nz-switch [ngModel]="data?.type === 'OUT'" (ngModelChange)='clickOut($event,data)'></nz-switch>
+
+          <!--          <label nz-radio  [(ngModel)]='data?.type === "0"' (ngModelChange)='clickOut(data)'>Radio</label>-->
+<!--          <label nz-radio  [(ngModel)]='data?.type === ""' (ngModelChange)='clickOut(data)'></label>-->
+        </td>
+      </tr>
+      </tbody>
+      <ng-template #totalTemplate let-total class='sysy'> 共 {{ total }} 条数据</ng-template>
+    </nz-table>
+  </nz-card>
+</div>

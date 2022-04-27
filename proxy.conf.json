@@ -1,0 +1,20 @@
+{
+  "/api/blade": {
+    "target": "http://10.10.21.252/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/": "/"
+    }
+  },
+  "/api": {
+    "target": "http://localhost:8200/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": "/"
+    }
+  }
+}

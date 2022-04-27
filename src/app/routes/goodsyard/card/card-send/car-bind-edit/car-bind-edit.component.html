@@ -1,0 +1,80 @@
+<div class='flex mb5 '>
+  <div class='flex1 flex pr15 align-items-center'>
+    <nz-form-label class='w100 tr'>计划号</nz-form-label>
+
+    <div class='flex1 pl5' style='word-break: break-all'>{{ record?.planNo ? record?.planNo : '-' }}</div>
+  </div>
+  <div class='flex1 flex pr15 align-items-center'>
+    <nz-form-label class='w100 tr'>场区</nz-form-label>
+
+    <div class='flex1 pl5'
+         style='word-break: break-all'>{{ record?.fieldName ? record?.fieldName + '-' + record?.stackName : '-' }}</div>
+  </div>
+  <div class='flex1 pr15'>
+
+  </div>
+</div>
+
+
+<div class='flex mb5'>
+  <form nz-form [formGroup]='form' class='flex w'>
+    <div class='flex1 flex pr15'>
+      <nz-form-item class='w'>
+        <nz-form-label class='w100 tr' nzRequired>卡号</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName='cardNo' placeholder='请输入' />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class='flex1 flex pr15'>
+      <nz-form-item>
+        <nz-form-label class='w100 tr' nzRequired>车牌号</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName='licenseNumber' placeholder='请输入' />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class='flex1 flex pr15'>
+      <nz-form-item>
+        <nz-form-control [nzOffset]='7' [nzSpan]='12'>
+          <button nz-button nzType='primary' (click)='add()'>添加</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </form>
+</div>
+
+<nz-table
+  class='mt30 hover-table odd-table fix-table'
+  #table
+  [nzShowPagination]='false' [nzFrontPagination]='false'
+  [nzData]='dataList'
+  [nzLoading]='pageInfo.loading'
+>
+  <thead>
+  <tr>
+    <th class='w80'>序号</th>
+    <th>车牌号</th>
+    <th>卡号</th>
+    <th nzWidth='210px'>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor='let data of table.data; let i = index'>
+    <td>{{ i + 1 + (this.pageInfo.pi - 1) * this.pageInfo.ps }}</td>
+    <td>{{ data?.licenseNumber }}</td>
+    <td>{{ data?.cardNo }}</td>
+    <td>
+      <a class='line-remove' nz-popconfirm nzPopconfirmTitle='确认删除吗?' nzPopconfirmPlacement='top'
+         (nzOnConfirm)='remove(data)'>删除</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+
+
+

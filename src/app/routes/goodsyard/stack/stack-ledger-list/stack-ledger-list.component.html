@@ -1,0 +1,79 @@
+<div class="content" style="padding-top: 20px; padding-left: 20px">
+  <nz-card style="min-height: calc(100vh - 20px); border-top-left-radius: 10px" [nzBordered]="false">
+    <form nz-form [formGroup]="searchForm" class="ant-advanced-search-form line-form">
+      <div class="row">
+        <div class="col-1-4 col-1-3-md">
+          <nz-form-item nzFlex>
+            <nz-form-label>垛位名称</nz-form-label>
+            <nz-form-control class="flex2">
+              <input nz-input formControlName="stackName" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-1-4 col-1-3-md btn-group">
+          <button nz-button nzType="primary" (click)="search()">查询</button>
+          <button nz-button nzType="primary" (click)="export()">导出</button>
+          <button nz-button nzType="default" (click)="reset()">重置</button>
+        </div>
+      </div>
+    </form>
+
+    <nz-table
+      class="mt30 hover-table odd-table fix-table"
+      #table
+      [nzShowSizeChanger]="true"
+      [nzFrontPagination]="false"
+      [nzShowTotal]="totalTemplate"
+      [nzTotal]="pageInfo.total"
+      [(nzPageIndex)]="pageInfo.pi"
+      [(nzPageSize)]="pageInfo.ps"
+      [nzData]="dataList"
+      [nzLoading]="pageInfo.loading"
+      (nzPageIndexChange)="load()"
+    >
+      <thead>
+        <tr>
+          <th class="w80">序号</th>
+          <th>场位</th>
+          <th>垛位</th>
+          <th>分票标记</th>
+          <th>船名</th>
+          <th>货主</th>
+          <th>货名</th>
+          <th>吨数</th>
+          <!--        <th nzWidth='210px'>操作</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data; let i = index">
+          <td>{{ i + 1 + (this.pageInfo.pi - 1) * this.pageInfo.ps }}</td>
+          <td>{{ data?.fieldName }}</td>
+          <td>{{ data?.name }}</td>
+          <td>{{ data?.billNo }}</td>
+          <td>{{ data?.shipName }}</td>
+          <td>{{ data?.cargoOwner }}</td>
+          <td>{{ data?.cargoName }}</td>
+          <td>{{ data?.tonnage }}</td>
+        </tr>
+      </tbody>
+      <ng-template #totalTemplate let-total class="sysy"> 共 {{ total }} 条数据</ng-template>
+    </nz-table>
+  </nz-card>
+</div>
+
+<!--<nz-tabset nzType="card">
+  <nz-tab nzTitle='Tab 1' >
+    <div style='height: 2000px;width: 500px;background-color: #0e4980' (click)='gogogo()'></div>
+  </nz-tab>
+  <nz-tab nzTitle='Tab 2'>
+    <div style='height: 2000px;width: 500px;background-color: #2cb143'></div>
+
+  </nz-tab>
+  <nz-tab nzTitle='Tab 3'>
+    <div style='height: 2000px;width: 500px;background-color: #2cb143'></div>
+
+  </nz-tab>
+</nz-tabset>
+
+
+<button (click)='koko()'>asdasd</button>-->

@@ -1,0 +1,105 @@
+:host {
+  ::ng-deep {
+    .alain-default__nav-item {
+      color: rgba(0, 0, 0, 0.65) !important;
+    }
+
+    .icon {
+      color: #fff;
+      font-size: 22px;
+    }
+
+    .pl-list {
+      //width: 100%;
+      width: 70px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pl-item {
+      outline-style: none;
+      display: flex;
+    }
+
+    .out-btn {
+      padding: 5px 20px;
+      border: 1px solid #89939d;
+      border-radius: 20px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .user {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    .ant-menu-submenu-expand-icon,
+    .ant-menu-submenu-arrow {
+      color: #ffffff !important;
+    }
+
+    .user {
+      //background: url('../../../../assets/img/mountain.png') no-repeat;
+    }
+
+    .ant-menu-submenu-open,.ant-menu-submenu-selected,.ant-menu-item-selected {
+      position: relative;
+      //border-left: 3px solid #F04F57;
+    }
+    .ant-menu-item-selected:before{
+      content: '';
+      display: block;
+      width: 3px;
+      height: 20px;
+      background-color: #0167E6 !important;
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+      right: 0px;
+      z-index: 999;
+    }
+
+    .ant-menu {
+      background-color: #0167E6 !important;
+    }
+  }
+}
+
+.platForm-actived .icon {
+  color: #2199f0 !important;
+  position: relative;
+}
+
+.platForm-actived .icon:before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 40%;
+  background-color: #2199f0;
+  position: absolute;
+  top: 16px;
+  left: 0px;
+}
+
+.showItem:hover {
+  color: #239af1;
+}
+
+.showItem {
+  color: #ececec;
+}
+
+.table-row-actived {
+  background-color: #2e394b;
+
+  i {
+    color: #21a4f6;
+  }
+
+  .showItem {
+    color: #21a4f6;
+  }
+}

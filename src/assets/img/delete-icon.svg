@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 3</title>
+    <defs>
+        <circle id="path-1" cx="12.5" cy="12.5" r="12.5"></circle>
+        <filter x="-24.0%" y="-24.0%" width="148.0%" height="148.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.703802579   0 0 0 0 0.703802579   0 0 0 0 0.703802579  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="还卡" transform="translate(-811.000000, -330.000000)">
+            <g id="编组-3" transform="translate(815.000000, 334.000000)">
+                <g id="椭圆形">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#E04D4D" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M11.7940486,11.794105 L11.7940486,6.91911272 C11.7940486,6.47032678 12.1578281,6.10654728 12.606614,6.10654728 C13.0552665,6.10654728 13.419046,6.47032678 13.419046,6.91911272 L13.419046,11.794105 L18.2940383,11.794105 C18.7426908,11.794105 19.1064703,12.1578845 19.1064703,12.606537 C19.1064703,13.0553229 18.7426908,13.4191024 18.2940383,13.4191024 L13.419046,13.4191024 L13.419046,18.2939613 C13.419046,18.7427472 13.0552665,19.1065267 12.606614,19.1065267 C12.1578281,19.1065267 11.7940486,18.7427472 11.7940486,18.2939613 L11.7940486,13.4191024 L6.91905626,13.4191024 C6.47027032,13.4191024 6.10662427,13.0553229 6.10662427,12.606537 C6.10662427,12.1578845 6.47027032,11.794105 6.91905626,11.794105 L11.7940486,11.794105 Z" id="Fill-1" fill="#FFFFFF" transform="translate(12.606547, 12.606537) rotate(-315.000000) translate(-12.606547, -12.606537) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

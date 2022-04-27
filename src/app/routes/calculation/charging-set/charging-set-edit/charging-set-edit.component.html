@@ -1,0 +1,57 @@
+<form nz-form [formGroup]="form">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>名称</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input formControlName="name" placeholder="请输入" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>系统默认模板</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+<!--      <input nz-input formControlName="isDefault" placeholder="请输入" />-->
+      <nz-radio-group formControlName='isDefault' (ngModelChange)='change($event)'>
+        <label nz-radio [nzValue]='1'>是</label>
+        <label nz-radio [nzValue]='0'>否</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<nz-form-item>
+  <nz-form-label [nzSpan]="7" nzRequired>计费设置</nz-form-label>
+  <nz-form-control [nzSpan]="12">
+    <button nz-button (click)="addRow()">添加</button>
+  </nz-form-control>
+</nz-form-item>
+
+<nz-table #editRowTable nzBordered [nzData]="listOfData">
+  <thead>
+  <tr>
+    <th>截止天数</th>
+    <th>计费单价（元/吨.天）</th>
+<!--    <th>操作</th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of editRowTable.data" class="editable-row">
+    <td>
+<!--      <input type="text" nz-input [(ngModel)]="data.days" (blur)="stopEdit()" />-->
+      <nz-input-number class='w' [(ngModel)]="data.days" [nzMin]="1" (blur)="stopEdit()" [nzPrecision]='0'></nz-input-number>
+    </td>
+    <td>
+<!--      <input type="text" nz-input [(ngModel)]="data.bill" (blur)="stopEdit()" />-->
+      <nz-input-number class='w' [(ngModel)]="data.bill" [nzMin]="1" (blur)="stopEdit()" [nzPrecision]='2'></nz-input-number>
+
+    </td>
+<!--    <td>-->
+<!--      <a class="line-remove" (click)='deleteRow(data.key)' [hidden]='data.key=="0"'>删除</a>-->
+<!--    </td>-->
+  </tr>
+  </tbody>
+</nz-table>
+
+<div class="drawer-footer-bottom">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save()">保存</button>
+</div>

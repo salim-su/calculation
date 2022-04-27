@@ -1,0 +1,78 @@
+
+
+
+<div class='flex'>
+
+
+  <form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form" class="loginInForm flex flex1" [nzLayout]="'vertical'">
+
+
+<!--    <div style="width: 536px">-->
+<!--      <img src="./assets/img/title.png" alt="" style="width: 500px; margin-top: 130px" />-->
+<!--      &lt;!&ndash;    <img src="./assets/img/l-logo.png" alt="" style="position: absolute;top: 5%;left: 5%;">&ndash;&gt;-->
+<!--    </div>-->
+
+    <div class="flex1 loginForm">
+      <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+      <!--        <h2 class="ls2 tc" style="font-family: impact">天津港第四港埠智能管理平台</h2>-->
+
+      <img src="./assets/img/login-title.png" class='mt70'>
+
+      <nz-form-item class="mt70">
+        <nz-form-label style="padding-bottom: 15px !important">
+          <span class="c000">账号</span>
+        </nz-form-label>
+        <nz-form-control>
+          <nz-input-group style="height: 45px; border-radius: 3px" nzSize="large">
+            <input nz-input formControlName="userName" placeholder="请输入用户名" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class="mt30">
+        <nz-form-label style="padding-bottom: 15px !important">
+          <span class="c000">密码</span>
+        </nz-form-label>
+
+        <nz-form-control>
+          <nz-input-group style="height: 45px; border-radius: 3px" nzSize="large">
+            <input nz-input [type]="seePassword ? 'text' : 'password'" formControlName="password" placeholder="请输入密码" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item style="margin-bottom: 10px !important" *ngIf="showCaptcha">
+        <nz-form-control>
+          <nz-input-group style="height: 50px" nzSize="large" class="flex">
+            <div class="flex1 flex justify-content-center align-items-center">
+              <input style="height: 50px" nz-input formControlName="captchaVerCode" placeholder="请输入验证码" />
+            </div>
+            <div class="flex1 flex justify-content-center align-items-center">
+              <img (click)="cl()" [src]="captchaUrl" alt="验证码" class="cp" />
+            </div>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item style="padding-top: 140px;padding-left: 40px;padding-right: 40px;">
+        <button
+          style="height: 60px; background-image: linear-gradient(141deg, #0067E6 0%, #0067E6 51%, #0067E675%); border-width: 0px"
+          nz-button
+          type="submit"
+          nzType="primary"
+          nzSize="large"
+          [nzLoading]="http.loading"
+          nzBlock
+        >
+          <span class="ls2">立即登录</span>
+        </button>
+      </nz-form-item>
+    </div>
+  </form>
+
+
+  <div style='' class='login-right'></div>
+
+
+
+
+</div>

@@ -1,0 +1,32 @@
+<nz-table #basicTable [nzData]="dataSet" [nzFrontPagination]="false">
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>设备编号</th>
+      <th>时间</th>
+      <th>纬度</th>
+      <th>经度</th>
+      <th>车辆ID</th>
+      <th>速度</th>
+      <th>方向</th>
+      <th>卫星数</th>
+      <th>定位状态</th>
+      <th>信号强度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let i = index">
+      <td>{{ i }}</td>
+      <td>{{ data[9] }}</td>
+      <td>{{ timeMoment(data[0]) }}</td>
+      <td>{{ data[1] }}</td>
+      <td>{{ data[2] }}</td>
+      <td>{{ data[3] }}</td>
+      <td>{{ data[4] }}</td>
+      <td>{{ data[5] }}</td>
+      <td>{{ data[6] }}</td>
+      <td>{{ data[7] }}</td>
+      <td>{{ data[8] }}</td>
+    </tr>
+  </tbody>
+</nz-table>

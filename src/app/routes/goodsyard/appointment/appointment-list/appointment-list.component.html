@@ -1,0 +1,114 @@
+<div class="content" style="padding-top: 20px; padding-left: 20px">
+  <nz-card style="min-height: calc(100vh - 20px); border-top-left-radius: 10px" [nzBordered]="false">
+    <form nz-form [formGroup]="searchForm" class="ant-advanced-search-form line-form">
+      <div class="row">
+        <div class="col-1-4 col-1-4-md">
+          <nz-form-item nzFlex>
+            <nz-form-label>预约日期 </nz-form-label>
+            <nz-form-control class="flex2">
+              <nz-date-picker class="w" formControlName="appointmentDate" [nzAllowClear]="false"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-1-4 col-1-4-md">
+          <nz-form-item nzFlex>
+            <nz-form-label>车牌号</nz-form-label>
+            <nz-form-control class="flex2">
+              <input nz-input formControlName="licenseNumber" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-1-4 col-1-4-md">
+          <nz-form-item nzFlex>
+            <nz-form-label>类型</nz-form-label>
+            <nz-form-control class="flex2">
+              <!--              <nz-select formControlName="isFinished">-->
+              <!--                <nz-option  nzValue="1" nzLabel="进场审核"></nz-option>-->
+              <!--                <nz-option nzValue="0" nzLabel="审核历史"></nz-option>-->
+              <!--              </nz-select>-->
+              <nz-radio-group formControlName="status" (ngModelChange)="change($event)">
+                <label nz-radio nzValue="IN_APPLICATION">预约审核</label>
+                <label nz-radio nzValue="APPROVED">预约历史</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-1-4 col-1-4-md btn-group">
+          <button nz-button nzType="primary" (click)="search()">查询</button>
+          <button nz-button nzType="default" (click)="reset()">重置</button>
+          <button nz-button nzType="default" (click)="export()">导出</button>
+        </div>
+      </div>
+    </form>
+
+    <nz-table
+      class="mt30 hover-table odd-table fix-table"
+      #table
+      [nzShowSizeChanger]="true"
+      [nzFrontPagination]="false"
+      [nzShowTotal]="totalTemplate"
+      [nzTotal]="pageInfo.total"
+      [(nzPageIndex)]="pageInfo.pi"
+      [(nzPageSize)]="pageInfo.ps"
+      [nzData]="dataList"
+      [nzLoading]="pageInfo.loading"
+      (nzPageIndexChange)="load()"
+    >
+      <thead>
+        <tr>
+          <th class="w80">序号</th>
+          <th>计划号</th>
+          <th>船名</th>
+          <th>货名</th>
+          <th>货场</th>
+          <th>司机姓名</th>
+          <th>车牌号</th>
+          <!--          <th>身份证号</th>-->
+          <th>电话</th>
+          <th>流向省市</th>
+          <!--          <th>预约提货时间</th>-->
+          <th nzWidth="210px">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data; let i = index">
+          <td>{{ i + 1 + (this.pageInfo.pi - 1) * this.pageInfo.ps }}</td>
+          <td>{{ data?.planNo }}</td>
+          <td>{{ data?.shipName }}</td>
+          <td>{{ data?.cargoName }}</td>
+          <td>{{ data?.stackName }}</td>
+          <td>{{ data?.driverName }}</td>
+          <td>{{ data?.licenseNumber }}</td>
+          <!--          <td>{{ data?.idNumber }}</td>-->
+          <td>{{ data?.phoneNumber }}</td>
+          <td>{{ data?.flowTo }}</td>
+          <!--          <td>{{ data?.appointmentDate }}</td>-->
+          <td *ngIf="data.status === 'APPROVED'">
+            <a (click)="check(data)">查看</a>
+          </td>
+          <td *ngIf="data.status === 'IN_APPLICATION'">
+            <a (click)="audit(data)">审核</a>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #totalTemplate let-total class="sysy"> 共 {{ total }} 条数据</ng-template>
+    </nz-table>
+  </nz-card>
+</div>
+
+<!--<nz-tabset nzType="card">
+  <nz-tab nzTitle='Tab 1' >
+    <div style='height: 2000px;width: 500px;background-color: #0e4980' (click)='gogogo()'></div>
+  </nz-tab>
+  <nz-tab nzTitle='Tab 2'>
+    <div style='height: 2000px;width: 500px;background-color: #2cb143'></div>
+
+  </nz-tab>
+  <nz-tab nzTitle='Tab 3'>
+    <div style='height: 2000px;width: 500px;background-color: #2cb143'></div>
+
+  </nz-tab>
+</nz-tabset>
+
+
+<button (click)='koko()'>asdasd</button>-->

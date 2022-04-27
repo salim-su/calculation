@@ -1,0 +1,194 @@
+<!--<div class='dashboard__container'>
+  <div
+    appMapPanel
+    style='height: 100vh;'
+    popupId='popupContainer'
+    [truckType]='truckType'
+    [record]='stackList'
+    [trucks]='truckList'
+    [tracks]='trackList'
+    [methods]='methods'
+    [focusPoint]='focusPoint'
+    baseMapType='earth'
+    (isLoadingChange)='methods = $event'
+    (clickMap)='onClickMap($event)'
+    (clickTruck)='onClickTruck($event)'
+  ></div>
+  <div class='top-tabs__container'>
+    <div (click)='onActivity("DXT")' [style.background]='activity === "DXT" ? "#E4E8F0" : ""' [style.color]='activity === "DXT" ? "#1d1d1f" : ""'>垛型图</div>
+    <div (click)='onActivity("LJJK")' [style.background]='activity === "LJJK" ? "#E4E8F0" : ""' [style.color]='activity === "LJJK" ? "#1d1d1f" : ""'>流机监控</div>
+    <div (click)='onActivity("WLCL")' [style.background]='activity === "WLCL" ? "#E4E8F0" : ""' [style.color]='activity === "WLCL" ? "#1d1d1f" : ""'>外来车辆</div>
+  </div>
+  <div *ngIf='activity === "DXT"' style='position: fixed;right: 20px; top: 80px;'>
+    <button nz-button nzType='primary' nzShape='round' (click)='methods = "printMap"'>
+      <i nz-icon nzType='download'></i>
+      导出地图
+    </button>
+  </div>
+  <div class='search__container' *ngIf='activity === "WLCL"'>
+    <nz-input-group nzSearch [nzAddOnAfter]='suffixIconButton' class='search__input' (keydown.enter)='onSearch()'>
+      <input type='text' nz-input placeholder='计划号查询' [(ngModel)]='keyword' />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button style='height: 40px;' nzType='primary' nzSearch (click)='onSearch()'>
+        <i nz-icon nzType='search'></i>
+      </button>
+    </ng-template>
+
+    <div class='search-result__container'>
+      <div style='overflow: auto; height: 80vh;'>
+        <ng-container *ngFor='let item of searchResult;'>
+          <div class='result-item__container' (click)='onFocus(item)'>
+            <div class='plate-number'>
+              <img src='./assets/map/icon_def.png' />
+              {{ item.licenseNumber }}
+            </div>
+            <div class='ml10 mt10'>
+              <div class='item-info'>
+                <div class='item-info__label'>计划号</div>
+                <span class='item-info__value'>
+                  {{ item.planNo }}
+                </span>
+              </div>
+              <div class='mt10 item-info'>
+                <div class='item-info__label'>船名</div>
+                <span class='item-info__value'>
+                  {{ item.shipName }}
+                </span>
+              </div>
+              <div class='mt10 item-info'>
+                <div class='item-info__label'>位置</div>
+                <span class='item-info__value'>
+                  {{ item.fieldName }}
+                  &#45;&#45;
+                  {{ item.stackName }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class='track__container' *ngIf='truckData'>
+    <ng-container *ngIf='truckData?.truckType === "truck"'>
+      <div class='flex justify-content-between mt10 mb10'>
+        <div style='color: #8B8B8B;'>车牌号</div>
+        <div>{{ truckData?.licenseNumber }}</div>
+      </div>
+      <div class='flex justify-content-between mt10 mb10'>
+        <div style='color: #8B8B8B;'>计划号</div>
+        <div>{{ truckData?.planNo }}</div>
+      </div>
+      <div class='flex justify-content-between mt10 mb10'>
+        <div style='color: #8B8B8B;'>目的货场</div>
+        <div>
+          {{ truckData?.fieldName }}
+          -
+          {{ truckData?.stackName }}
+        </div>
+      </div>
+      <div class='flex justify-content-between mt10 mb10'>
+        <div style='color: #8B8B8B;'>货主</div>
+        <div>{{ truckData?.cargoOwner }}</div>
+      </div>
+      <div class='flex justify-content-between mt10 mb10'>
+        <div style='color: #8B8B8B;'>货名</div>
+        <div>{{ truckData?.cargoName }}</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf='truckData?.truckType === "loader"'>
+      <div class='flex justify-content-between mt10 mb10'>
+        <div style='color: #8B8B8B;'>车辆</div>
+        <div>{{ truckData?.name }}</div>
+      </div>
+    </ng-container>
+
+    <div class=''>
+      <h3 style='color: #2458BC;'>选择起止时间</h3>
+      <nz-date-picker
+        [nzShowTime]='{ nzFormat: "HH:mm" }'
+        [(ngModel)]='startDate'
+        nzFormat='yyyy-MM-dd HH:mm'
+        nzPlaceHolder='开始时间'
+      ></nz-date-picker>
+      -
+      <nz-date-picker
+        [nzShowTime]='{ nzFormat: "HH:mm" }'
+        [(ngModel)]='endDate'
+        nzFormat='yyyy-MM-dd HH:mm'
+        nzPlaceHolder='结束时间'
+      ></nz-date-picker>
+    </div>
+
+    <div class='btn__check-track' (click)='checkTrack()'>
+      查看轨迹
+    </div>
+  </div>
+
+  <div id='temp__container' [hidden]='true'></div>
+  <div [hidden]='true'>
+    <div id='popupContainer' class='popup-container'>
+      <div class='top_bg'></div>
+      <div class='popup-content'>
+        <h1 style='color: #52A843;'>
+          {{ mapData?.shipName }}
+        </h1>
+        <p>垛位：{{ mapData?.name }}</p>
+        <p>票号：{{ mapData?.billNo }}</p>
+        <p>船名：{{ mapData?.shipName }}</p>
+        <p>货主：{{ mapData?.cargoOwner }}</p>
+        <p>货名：{{ mapData?.cargoName }}</p>
+        <p>吨数：{{ mapData?.tonnage }}&nbsp;&nbsp;吨</p>
+      </div>
+    </div>
+
+    &lt;!&ndash; 装载车 &ndash;&gt;
+    <div id='popupTruck' class='truck_container' style='transform: scale(.3)'>
+      <div class='truck__status' [hidden]='truckType === "loader"'>
+        <div class='truck__status__point'></div>
+        <span class='truck-status__text'></span>
+      </div>
+      <div class='truck__img__loader' *ngIf='truckType === "loader"'></div>
+      <div class='truck__img__truck' *ngIf='truckType === "truck"'></div>
+      <div class='truck__name'>
+        <div class='truck__name__line'></div>
+        <div class='flex1 text-center truck__name__text'></div>
+        <div class='truck__name__line'></div>
+      </div>
+    </div>
+  </div>
+</div>-->
+<h1>首页</h1>
+<button nz-button (click)="addRow()" nzType="primary">Add</button>
+<button nz-button (click)="sub()" nzType="primary">submit</button>
+<br />
+<br />
+<nz-table #editRowTable nzBordered [nzData]="listOfData">
+  <thead>
+  <tr>
+    <th>截止天数</th>
+    <th>计费单价（元/吨.天）</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of editRowTable.data" class="editable-row">
+    <td>
+<!--      <div class="editable-cell" [hidden]="editId === data.id" (click)="startEdit(data.id)">-->
+<!--        {{ data.age }}-->
+<!--      </div>-->
+      <input type="text" nz-input [(ngModel)]="data.age" (blur)="stopEdit()" />
+    </td>
+    <td>
+      <input type="text" nz-input [(ngModel)]="data.address" (blur)="stopEdit()" />
+    </td>
+    <td>
+      <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">删除</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

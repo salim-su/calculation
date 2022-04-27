@@ -1,0 +1,101 @@
+
+<nz-card style="width:100%;">
+  <div class='flex'>
+    <div class='t1-body'>
+      <span class='fw'>船名 : </span>
+      <span>{{record?.shipName}}</span>
+    </div>
+    <div class='t1-body'>
+      <span class='fw'>货主及代理 : </span>
+      <span>{{record?.cargoOwner}}</span>
+    </div>
+    <div class='t1-body'>
+      <span class='fw'>品种 : </span>
+      <span>{{record?.cargoName}}</span>
+    </div>
+    <div class='t1-body'>
+      <span class='fw'>存放地点 : </span>
+      <span>{{record?.planYard}}</span>
+    </div>
+  </div>
+
+  <div class='flex'>
+    <div class='t1-body'>
+      <span class='fw'>入库吨数 : </span>
+      <span>{{record?.inWeight}}</span>
+    </div>
+    <div class='t1-body'>
+      <span class='fw'>入库日期 : </span>
+      <span>{{record?.inDate}}</span>
+    </div>
+    <div class='t1-body'>
+      <span class='fw'>计费日期 : </span>
+      <span>{{record?.calculateDate}}</span>
+    </div>
+  </div>
+</nz-card>
+
+<nz-card>
+  <nz-form-item nzFlex>
+    <nz-form-label>计费模板</nz-form-label>
+    <nz-form-control class="flex2">
+      <nz-select [(ngModel)]='billingRuleId' style='width: 200px;' (ngModelChange)='changeVal($event)'>
+        <nz-option [nzValue]="item?.id" [nzLabel]="item?.name" *ngFor="let item of ruleList"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-table #basicTable [nzData]="listOfData" [nzFrontPagination]='false' [nzLoading]='listLoading'>
+    <thead>
+    <tr>
+      <th>截止日期(天)</th>
+      <th>计费单价(元/吨、天)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.days }}</td>
+      <td>{{ data.bill }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+
+<!--  <div style='height: 800px;background: red'>-->
+
+<!--  </div>-->
+
+
+</nz-card>
+<nz-card>
+  <nz-table #calculateTable [nzData]="calculateOfData" [nzLoading]='listLoading' [nzFrontPagination]='false'>
+    <thead>
+    <tr>
+      <th>出库日期</th>
+      <th>计费日期</th>
+      <th>累计天数</th>
+      <th>出库吨数</th>
+      <th>费率</th>
+      <th>金额</th>
+      <th>库存吨数</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of calculateTable.data">
+      <td>{{ data.updateDate }}</td>
+      <td>{{ data.grandTotal }}</td>
+      <td>{{ data.grandTotal }}</td>
+      <td>{{ data.outWeight }}</td>
+      <td>{{ data.rate }}</td>
+      <td>{{ data.amount }}</td>
+      <td>{{ data.weight }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+
+
+<div class="drawer-footer-bottom">
+  <button class='cancel-btn'  nz-button (click)='close()'>关闭</button>
+    <button class='save-btn' nz-button nzType='primary' (click)='export()'>导出</button>
+</div>

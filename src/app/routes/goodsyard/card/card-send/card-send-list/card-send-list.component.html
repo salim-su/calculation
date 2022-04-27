@@ -1,0 +1,63 @@
+<div class="content" style="padding-top: 20px; padding-left: 20px">
+  <nz-card style="min-height: calc(100vh - 20px); border-top-left-radius: 10px" [nzBordered]="false">
+    <form nz-form [formGroup]="searchForm" class="ant-advanced-search-form line-form">
+      <div class="row">
+        <div class="col-1-4 col-1-3-md">
+          <nz-form-item nzFlex>
+            <nz-form-label>计划名称</nz-form-label>
+            <nz-form-control class="flex2">
+              <input nz-input formControlName="planName" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-1-4 col-1-3-md btn-group">
+          <button nz-button nzType="primary" (click)="search()">查询</button>
+          <button nz-button nzType="default" (click)="reset()">重置</button>
+        </div>
+      </div>
+    </form>
+
+    <nz-table
+      class="mt30 hover-table odd-table fix-table"
+      #table
+      [nzShowSizeChanger]="true"
+      [nzFrontPagination]="false"
+      [nzShowTotal]="totalTemplate"
+      [nzTotal]="pageInfo.total"
+      [(nzPageIndex)]="pageInfo.pi"
+      [(nzPageSize)]="pageInfo.ps"
+      [nzData]="dataList"
+      [nzLoading]="pageInfo.loading"
+      (nzPageIndexChange)="load()"
+      (nzPageSizeChange)="search()"
+    >
+      <thead>
+        <tr>
+          <th class="w80">序号</th>
+          <th>系统编号</th>
+          <th>计划名称</th>
+          <th>计划编号</th>
+          <th>垛位名称</th>
+          <th>货场</th>
+          <th>车辆</th>
+          <th nzWidth="210px">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data; let i = index">
+          <td>{{ i + 1 + (this.pageInfo.pi - 1) * this.pageInfo.ps }}</td>
+          <td>{{ data?.sysNo }}</td>
+          <td>{{ data?.planName }}</td>
+          <td>{{ data?.planNo }}</td>
+          <td>{{ data?.stackName }}</td>
+          <td>{{ data?.fieldName }}</td>
+          <td>{{ data?.truckCount }}</td>
+          <td>
+            <a (click)="bind(data)">发卡</a>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #totalTemplate let-total class="sysy"> 共 {{ total }} 条数据</ng-template>
+    </nz-table>
+  </nz-card>
+</div>

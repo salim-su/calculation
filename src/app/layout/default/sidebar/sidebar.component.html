@@ -1,0 +1,85 @@
+<div class='alain-default__aside-inner posr'>
+  <div class='top-logo flex justify-content-center align-items-center' style=''>
+            <img class="logo" src="./assets/img/gb.svg" style="height:24px;">
+<!--    <img class='logo' src='./assets/img/YJGLOGO.png' style='height: 16px' />-->
+    <!--    <div class="w cfff fw" style="font-family: cursive;font-size: 20px">{{settings.app.name}}</div>-->
+<!--    <div class='w cfff fw' style='font-family: cursive; font-size: 16px'>三重一大管理系统</div>-->
+  </div>
+
+<!--  <div class='user flex flex-column justify-content-center align-items-center'>-->
+<!--    <img src='./assets/tmp/img/avatar.jpg' alt='' style='width: 72px; height: 72px; border-radius: 50%' />-->
+
+<!--    <span style='color: #c3c8cb' class='pt10'>{{ userName }}</span>-->
+<!--    <div class='out-btn mt10 ls2' (click)='logout()'>退出登录</div>-->
+<!--  </div>-->
+
+  <ul nz-menu [nzMode]="'inline'">
+    <ng-container *ngFor="let item of navList">
+      <li
+        class="shouye"
+        *ngIf="item.children.length <= 0"
+        nz-menu-item
+        nz-tooltip
+        nzPlacement="right"
+        [routerLink]="item.link"
+        [nzMatchRouter]="true"
+      >
+        <i nz-icon [nzIconfont]="item.source" class="mr15"></i>
+        <!--        <i nz-icon nzIconfont="" class="mr15"></i>-->
+        <span>{{ item.name }}</span>
+      </li>
+      <li
+        [(nzOpen)]="openMap[item.id]"
+        (nzOpenChange)="openHandler(item.id)"
+        nz-submenu
+        [nzTitle]="template1"
+        *ngIf="item.children.length > 0"
+        class="nav-one"
+      >
+        <ng-template #template1>
+          <div>
+            <i nz-icon [nzIconfont]="item.source"></i>
+            {{ item.name }}
+          </div>
+        </ng-template>
+        <ul *ngIf="item.children.length > 0">
+          <ng-container *ngFor="let itemNoHover of item.children">
+            <li
+              (click)="clickMenu(itemNoHover)"
+              nz-menu-item
+              *ngIf="itemNoHover.children.length <= 0"
+              [nzMatchRouter]="true"
+              [routerLink]="itemNoHover.link"
+              class="itemNoHover"
+            >
+              {{ itemNoHover.name }}
+            </li>
+            <ul *ngIf="itemNoHover.children.length > 0" nz-menu [nzMode]="'vertical'" style="width: 200px" class="sususu">
+              <li nz-submenu [nzTitle]="itemNoHover.name" [nzMenuClassName]="'hover-nav'">
+                <ul>
+                  <li
+                    [nzMatchRouter]="true"
+                    [routerLink]="it.link"
+                    (click)="clickMenu(it)"
+                    class="hover-nav-nz-menu-item"
+                    nz-menu-item
+                    *ngFor="let it of itemNoHover.children"
+                  >
+                    {{ it.name }}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </ng-container>
+        </ul>
+      </li>
+    </ng-container>
+  </ul>
+
+
+
+  <div class='posa w flex justify-content-center' style='left: 0;bottom: 20px;'>
+    <header-user></header-user>
+  </div>
+
+</div>

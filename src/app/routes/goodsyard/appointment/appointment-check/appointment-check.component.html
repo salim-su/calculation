@@ -1,0 +1,66 @@
+<div class="content">
+  <div class="flex p5" style="border-bottom: 1px dotted #cccccc">
+    <div class="flex1 fw">司机姓名 :</div>
+    <div class="flex1">{{ record?.driverName }}</div>
+  </div>
+  <div class="flex p5" style="border-bottom: 1px dotted #cccccc">
+    <div class="flex1 fw">车牌号 :</div>
+    <div class="flex1">{{ record?.licenseNumber }}</div>
+  </div>
+  <div class="flex p5" style="border-bottom: 1px dotted #cccccc">
+    <div class="flex1 fw">身份证号 :</div>
+    <div class="flex1">{{ record?.idNumber }}</div>
+  </div>
+  <div class="flex p5" style="border-bottom: 1px dotted #cccccc">
+    <div class="flex1 fw">电话 :</div>
+    <div class="flex1">{{ record?.phoneNumber }}</div>
+  </div>
+  <div class="flex p5" style="border-bottom: 1px dotted #cccccc">
+    <div class="flex1 fw">流向省市 :</div>
+    <div class="flex1">{{ record?.flowTo }}</div>
+  </div>
+  <div class="flex p5" style="border-bottom: 1px dotted #cccccc">
+    <div class="flex1 fw">预约提货时间 :</div>
+    <div class="flex1">{{ record?.appointmentDate }}</div>
+  </div>
+  <div class="flex p5 flex-column" style="border-bottom: 1px solid #cccccc">
+    <div class="flex1 fw pb5">驾驶证</div>
+    <div style="width: 300px" class="flex1" *ngFor="let item of drivingLicense">
+      <div class="w">
+        <img nz-image [nzSrc]="item" alt="" class="imgss mb10" src="驾驶证" />
+      </div>
+    </div>
+  </div>
+  <div class="flex p5 flex-column" style="border-bottom: 1px solid #cccccc">
+    <div class="flex1 fw pb5">行驶证</div>
+    <div style="width: 300px" class="flex1" *ngFor="let item of vehicleLicense">
+      <div class="w">
+        <img nz-image [nzSrc]="item" alt="" class="imgss mb10" src="行驶证" />
+      </div>
+    </div>
+  </div>
+  <div class="flex p5 flex-column" style="border-bottom: 1px solid #cccccc">
+    <div class="flex1 fw pb5">核算检测</div>
+    <div style="width: 300px" class="flex1" *ngFor="let item of detectionPic">
+      <div class="w">
+        <img nz-image [nzSrc]="item" alt="" class="imgss mb10" src="核算检测" />
+      </div>
+    </div>
+  </div>
+  <div class="flex p5 flex-column" style="border-bottom: 1px solid #cccccc">
+    <div class="flex1 fw pb5">健康码</div>
+    <div style="width: 300px" class="flex1" *ngFor="let item of healthQrCode">
+      <div class="w">
+        <img nz-image [nzSrc]="item" alt="" class="imgss mb10" src="健康码" />
+      </div>
+    </div>
+  </div>
+  <div class="flex p5 flex-column" style="border-bottom: 1px solid #cccccc">
+    <div class="flex1 fw pb5">行程码</div>
+    <div style="width: 300px" class="flex1" *ngFor="let item of tripQrCode">
+      <div class="w">
+        <img nz-image [nzSrc]="item" alt="" class="imgss mb10" src="行程码" />
+      </div>
+    </div>
+  </div>
+</div>

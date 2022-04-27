@@ -1,0 +1,15 @@
+<form nz-form [formGroup]='form'>
+  <nz-form-item>
+    <nz-form-label [nzSpan]='7' nzRequired>场地名称</nz-form-label>
+    <nz-form-control [nzSpan]='12'>
+      <input nz-input formControlName='name' placeholder='请输入' />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+
+
+<div class="drawer-footer-bottom">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save()">保存</button>
+</div>
